@@ -17,6 +17,10 @@ class CacheFailure extends Failure {}
 
 class InternetFailure extends Failure {}
 
+class PermissionsFailure extends Failure {}
+
+class LocationFailure extends Failure {}
+
 class ClientFailure extends Failure {
   final String? message;
   const ClientFailure({this.message}) : super(message: message);
@@ -26,6 +30,10 @@ class FailureMessage {
   static String server = 'Error de servidor';
   static String unexpected = 'Error inesperado D:';
   static String internet = 'Parece que no tienes internet :(';
+  static String permissions =
+      "No tienes los permisos necesarios. \ndebes activarlos manualmente.";
+  static String location =
+      'Hubo un error al intentar obtener tu ubicación, verifica tu GPS';
 }
 
 String mapFailureToMessage(Failure failure) {
@@ -36,6 +44,10 @@ String mapFailureToMessage(Failure failure) {
       return FailureMessage.internet;
     case ServerFailure:
       return FailureMessage.server;
+    case PermissionsFailure:
+      return FailureMessage.permissions;
+    case LocationFailure:
+      return FailureMessage.location;
     default:
       return FailureMessage.unexpected;
   }

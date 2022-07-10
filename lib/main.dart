@@ -6,6 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'core/bloc_observer.dart';
 import 'core/injection_container.dart' as di;
 import 'core/routes/router.gr.dart';
+import 'features/map/location_cubit/location_cubit.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -36,11 +37,16 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp.router(
-      title: 'Tests',
-      debugShowCheckedModeBanner: false,
-      routerDelegate: _appRouter.delegate(),
-      routeInformationParser: _appRouter.defaultRouteParser(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(create: (context) => di.sl<LocationCubit>()),
+      ],
+      child: MaterialApp.router(
+        title: 'Tests',
+        debugShowCheckedModeBanner: false,
+        routerDelegate: _appRouter.delegate(),
+        routeInformationParser: _appRouter.defaultRouteParser(),
+      ),
     );
   }
 }

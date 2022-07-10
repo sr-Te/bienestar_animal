@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import 'info_page.dart';
-import 'map_page.dart';
+import 'information/info_page.dart';
+import 'map/map_page.dart';
 
 class InitialPage extends StatefulWidget {
   const InitialPage({Key? key}) : super(key: key);

@@ -1,8 +1,8 @@
 import 'package:auto_route/auto_route.dart';
 
-import '../../features/pages/info_page.dart';
-import '../../features/pages/initial_page.dart';
-import '../../features/pages/map_page.dart';
+import '../../features/information/info_page.dart';
+import '../../features/initial_page.dart';
+import '../../features/map/map_page.dart';
 
 @MaterialAutoRouter(
   replaceInRouteName: 'Page,Route',

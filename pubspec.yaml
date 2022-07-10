@@ -21,6 +21,7 @@ dependencies:
   validators: ^3.0.0
   flutter_smart_dialog: ^3.4.0+1
   device_preview: ^1.0.0
+  location: ^4.2.0
   google_maps_flutter: ^2.1.8
   google_maps_flutter_web: ^0.4.0
 
