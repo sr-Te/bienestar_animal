@@ -1,3 +1,4 @@
+import 'package:bienestar_animal/features/initial_page.dart';
 import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -6,6 +7,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'core/bloc_observer.dart';
 import 'core/injection_container.dart' as di;
 import 'core/routes/router.gr.dart';
+import 'features/information/categories_cubit/categories_cubit.dart';
 import 'features/map/location_cubit/location_cubit.dart';
 
 void main() async {
@@ -33,19 +35,21 @@ void main() async {
 class MyApp extends StatelessWidget {
   MyApp({Key? key}) : super(key: key);
 
-  final _appRouter = AppRouter();
+  // final _appRouter = AppRouter();
 
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
         BlocProvider(create: (context) => di.sl<LocationCubit>()),
+        BlocProvider(create: (context) => di.sl<CategoriesCubit>()),
       ],
-      child: MaterialApp.router(
+      child: MaterialApp(
         title: 'Tests',
         debugShowCheckedModeBanner: false,
-        routerDelegate: _appRouter.delegate(),
-        routeInformationParser: _appRouter.defaultRouteParser(),
+        home: InitialPage(),
+        // routerDelegate: _appRouter.delegate(),
+        // routeInformationParser: _appRouter.defaultRouteParser(),
       ),
     );
   }

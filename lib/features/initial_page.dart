@@ -17,8 +17,13 @@ class _InitialPageState extends State<InitialPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('BottomNavigationBar Sample'),
+        title: const Text('123456789-123456'),
+        actions: [
+          IconButton(onPressed: () {}, icon: Icon(Icons.notifications)),
+          IconButton(onPressed: () {}, icon: Icon(Icons.search)),
+        ],
       ),
+      drawer: Drawer(),
       body: _widgetOptions.elementAt(_selectedIndex),
       bottomNavigationBar: _bottomNavigationBar(),
     );

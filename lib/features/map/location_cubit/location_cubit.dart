@@ -10,9 +10,7 @@ part 'location_state.dart';
 class LocationCubit extends Cubit<LocationState> {
   final LocationRepository locationRepository;
 
-  LocationCubit({
-    required this.locationRepository,
-  }) : super(LocationInitial());
+  LocationCubit({required this.locationRepository}) : super(LocationInitial());
 
   Future<void> getUserLocation() async {
     emit(LocationLoadInProgress());
