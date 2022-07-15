@@ -10,61 +10,47 @@
 //
 // ignore_for_file: type=lint
 
-import 'package:auto_route/auto_route.dart' as _i4;
-import 'package:flutter/material.dart' as _i5;
+import 'package:auto_route/auto_route.dart' as _i3;
+import 'package:flutter/material.dart' as _i4;
 
-import '../../features/information/info_page.dart' as _i3;
-import '../../features/initial_page.dart' as _i1;
-import '../../features/map/map_page.dart' as _i2;
+import '../../features/home_page.dart' as _i1;
+import '../../features/new_post/new_post_page.dart' as _i2;
 
-class AppRouter extends _i4.RootStackRouter {
-  AppRouter([_i5.GlobalKey<_i5.NavigatorState>? navigatorKey])
+class AppRouter extends _i3.RootStackRouter {
+  AppRouter([_i4.GlobalKey<_i4.NavigatorState>? navigatorKey])
       : super(navigatorKey);
 
   @override
-  final Map<String, _i4.PageFactory> pagesMap = {
-    InitialRoute.name: (routeData) {
-      return _i4.MaterialPageX<dynamic>(
-          routeData: routeData, child: const _i1.InitialPage());
+  final Map<String, _i3.PageFactory> pagesMap = {
+    HomeRoute.name: (routeData) {
+      return _i3.MaterialPageX<dynamic>(
+          routeData: routeData, child: const _i1.HomePage());
     },
-    MapRoute.name: (routeData) {
-      return _i4.MaterialPageX<dynamic>(
-          routeData: routeData, child: const _i2.MapPage());
-    },
-    InfoRoute.name: (routeData) {
-      return _i4.MaterialPageX<dynamic>(
-          routeData: routeData, child: const _i3.InfoPage());
+    NewPostRoute.name: (routeData) {
+      return _i3.MaterialPageX<dynamic>(
+          routeData: routeData, child: const _i2.NewPostPage());
     }
   };
 
   @override
-  List<_i4.RouteConfig> get routes => [
-        _i4.RouteConfig(InitialRoute.name, path: '/'),
-        _i4.RouteConfig(MapRoute.name, path: '/map-page'),
-        _i4.RouteConfig(InfoRoute.name, path: '/info-page')
+  List<_i3.RouteConfig> get routes => [
+        _i3.RouteConfig(HomeRoute.name, path: '/'),
+        _i3.RouteConfig(NewPostRoute.name, path: '/new-post-page')
       ];
 }
 
 /// generated route for
-/// [_i1.InitialPage]
-class InitialRoute extends _i4.PageRouteInfo<void> {
-  const InitialRoute() : super(InitialRoute.name, path: '/');
+/// [_i1.HomePage]
+class HomeRoute extends _i3.PageRouteInfo<void> {
+  const HomeRoute() : super(HomeRoute.name, path: '/');
 
-  static const String name = 'InitialRoute';
+  static const String name = 'HomeRoute';
 }
 
 /// generated route for
-/// [_i2.MapPage]
-class MapRoute extends _i4.PageRouteInfo<void> {
-  const MapRoute() : super(MapRoute.name, path: '/map-page');
+/// [_i2.NewPostPage]
+class NewPostRoute extends _i3.PageRouteInfo<void> {
+  const NewPostRoute() : super(NewPostRoute.name, path: '/new-post-page');
 
-  static const String name = 'MapRoute';
-}
-
-/// generated route for
-/// [_i3.InfoPage]
-class InfoRoute extends _i4.PageRouteInfo<void> {
-  const InfoRoute() : super(InfoRoute.name, path: '/info-page');
-
-  static const String name = 'InfoRoute';
+  static const String name = 'NewPostRoute';
 }

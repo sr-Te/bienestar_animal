@@ -1,4 +1,3 @@
-import 'package:bienestar_animal/features/initial_page.dart';
 import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -25,17 +24,17 @@ void main() async {
     () => runApp(
       DevicePreview(
         enabled: false, // true only testing
-        builder: (context) => MyApp(),
+        builder: (context) => const MyApp(),
       ),
     ),
     blocObserver: Observer(),
   );
 }
 
-class MyApp extends StatelessWidget {
-  MyApp({Key? key}) : super(key: key);
+final _appRouter = AppRouter();
 
-  // final _appRouter = AppRouter();
+class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -44,12 +43,11 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (context) => di.sl<LocationCubit>()),
         BlocProvider(create: (context) => di.sl<CategoriesCubit>()),
       ],
-      child: MaterialApp(
+      child: MaterialApp.router(
         title: 'Tests',
         debugShowCheckedModeBanner: false,
-        home: InitialPage(),
-        // routerDelegate: _appRouter.delegate(),
-        // routeInformationParser: _appRouter.defaultRouteParser(),
+        routerDelegate: _appRouter.delegate(),
+        routeInformationParser: _appRouter.defaultRouteParser(),
       ),
     );
   }

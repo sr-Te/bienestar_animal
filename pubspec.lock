@@ -281,13 +281,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.1.0"
-  effective_dart:
-    dependency: transitive
+  dropdown_search:
+    dependency: "direct main"
     description:
-      name: effective_dart
+      name: dropdown_search
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.3.2"
+    version: "5.0.2"
   equatable:
     dependency: "direct main"
     description:
@@ -295,13 +295,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.0.3"
-  expandable:
-    dependency: transitive
-    description:
-      name: expandable
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "5.0.1"
   fake_async:
     dependency: transitive
     description:
@@ -539,6 +532,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "4.0.1"
+  im_stepper:
+    dependency: "direct main"
+    description:
+      name: im_stepper
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.1+1"
   intl:
     dependency: transitive
     description:
@@ -616,13 +616,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "5.0.0"
-  markdown_editable_textinput:
-    dependency: "direct main"
-    description:
-      name: markdown_editable_textinput
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "2.0.2"
   matcher:
     dependency: transitive
     description:

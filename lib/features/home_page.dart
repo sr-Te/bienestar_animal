@@ -1,17 +1,28 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../widgets/app_drawer.dart';
+import 'information/categories_cubit/categories_cubit.dart';
 import 'information/info_page.dart';
 import 'map/map_page.dart';
 
-class InitialPage extends StatefulWidget {
-  const InitialPage({Key? key}) : super(key: key);
+class HomePage extends StatefulWidget {
+  const HomePage({Key? key}) : super(key: key);
 
   @override
-  State<InitialPage> createState() => _InitialPageState();
+  State<HomePage> createState() => _InitialPageState();
 }
 
-class _InitialPageState extends State<InitialPage> {
-  int _selectedIndex = 0;
+class _InitialPageState extends State<HomePage> {
+  late int _selectedIndex;
+
+  @override
+  void initState() {
+    super.initState();
+
+    _selectedIndex = 0;
+    // BlocProvider.of<CategoriesCubit>(context).getCategories();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -19,31 +30,31 @@ class _InitialPageState extends State<InitialPage> {
       appBar: AppBar(
         title: const Text('123456789-123456'),
         actions: [
-          IconButton(onPressed: () {}, icon: Icon(Icons.notifications)),
-          IconButton(onPressed: () {}, icon: Icon(Icons.search)),
+          IconButton(onPressed: () {}, icon: const Icon(Icons.notifications)),
+          IconButton(onPressed: () {}, icon: const Icon(Icons.search)),
         ],
       ),
-      drawer: Drawer(),
+      drawer: const AppDrawer(),
       body: _widgetOptions.elementAt(_selectedIndex),
       bottomNavigationBar: _bottomNavigationBar(),
     );
   }
 
   static const List<Widget> _widgetOptions = <Widget>[
-    MapPage(),
     InfoPage(),
+    MapPage(),
   ];
 
   Widget _bottomNavigationBar() {
     return BottomNavigationBar(
       items: const <BottomNavigationBarItem>[
         BottomNavigationBarItem(
-          icon: Icon(Icons.map),
-          label: 'Map',
-        ),
-        BottomNavigationBarItem(
           icon: Icon(Icons.article_outlined),
           label: 'Info',
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(Icons.map),
+          label: 'Map',
         ),
       ],
       currentIndex: _selectedIndex,
