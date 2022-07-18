@@ -7,6 +7,7 @@ import 'core/bloc_observer.dart';
 import 'core/injection_container.dart' as di;
 import 'core/routes/router.gr.dart';
 import 'features/information/categories_cubit/categories_cubit.dart';
+import 'features/information/posts_cubit/posts_cubit.dart';
 import 'features/map/location_cubit/location_cubit.dart';
 
 void main() async {
@@ -42,6 +43,7 @@ class MyApp extends StatelessWidget {
       providers: [
         BlocProvider(create: (context) => di.sl<LocationCubit>()),
         BlocProvider(create: (context) => di.sl<CategoriesCubit>()),
+        BlocProvider(create: (context) => di.sl<PostsCubit>()),
       ],
       child: MaterialApp.router(
         title: 'Tests',

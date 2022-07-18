@@ -5,7 +5,9 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import '../data/repositories/category_repository.dart';
 import '../data/repositories/location_repository.dart';
+import '../data/repositories/post_repository.dart';
 import '../features/information/categories_cubit/categories_cubit.dart';
+import '../features/information/posts_cubit/posts_cubit.dart';
 import '../features/map/location_cubit/location_cubit.dart';
 import 'network/network_info.dart';
 import 'utils/local_storage.dart';
@@ -13,18 +15,21 @@ import 'utils/local_storage.dart';
 final sl = GetIt.instance;
 
 Future<void> init() async {
-  //! CATEGORIES
+  // Category
   sl.registerFactory(() => CategoriesCubit(categoryRepository: sl()));
-  sl.registerLazySingleton<CategoryRepository>(() => CategoryRepository(
-        networkInfo: sl(),
-        client: sl(),
-      ));
+  sl.registerLazySingleton<CategoryRepository>(
+      () => CategoryRepository(networkInfo: sl(), client: sl()));
 
-  //! LOCATION
+  // Posts
+  sl.registerFactory(() => PostsCubit(postRepository: sl()));
+  sl.registerLazySingleton<PostRepository>(
+      () => PostRepository(client: sl(), networkInfo: sl()));
+
+  // Map
   sl.registerFactory(() => LocationCubit(locationRepository: sl()));
   sl.registerLazySingleton<LocationRepository>(() => LocationRepository());
 
-  //! CORE
+  // CORE
   final sharedPreferences = await SharedPreferences.getInstance();
   sl.registerLazySingleton(() => sharedPreferences);
   sl.registerLazySingleton(() => const FlutterSecureStorage());

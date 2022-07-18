@@ -1,10 +1,13 @@
-import 'package:bienestar_animal/features/new_post/cubit/create_new_post_cubit.dart';
+// ignore_for_file: constant_identifier_names
+
+import 'package:bienestar_animal/data/models/post.dart';
 import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:im_stepper/stepper.dart';
 
 import '../information/categories_cubit/categories_cubit.dart';
+import 'edit_new_post_cubit/edit_new_post_cubit.dart';
 
 const SELECT_CATEGORY = "Selecciona una categoria";
 const TITLE = "Título";
@@ -21,7 +24,7 @@ class NewPostEdit extends StatefulWidget {
 
 class _NewPostEditState extends State<NewPostEdit> {
   late int _index;
-  Map<PostValue, String> postValues = {};
+  NewPost newPost = NewPost();
 
   final _titleController = TextEditingController();
   final _abstractController = TextEditingController();
@@ -66,10 +69,10 @@ class _NewPostEditState extends State<NewPostEdit> {
   }
 
   Widget _firstStep() {
-    return BlocBuilder<CreateNewPostCubit, CreateNewPostState>(
+    return BlocBuilder<EditNewPostCubit, EditNewPostState>(
       builder: (context, state) {
-        postValues = state.postValues;
-        _updateControllers(postValues);
+        newPost = state.newPost;
+        _updateControllers(newPost);
 
         return Expanded(
           child: ListView(
@@ -88,10 +91,10 @@ class _NewPostEditState extends State<NewPostEdit> {
   }
 
   Widget _secondStep() {
-    return BlocBuilder<CreateNewPostCubit, CreateNewPostState>(
+    return BlocBuilder<EditNewPostCubit, EditNewPostState>(
       builder: (context, state) {
-        postValues = state.postValues;
-        _updateControllers(postValues);
+        newPost = state.newPost;
+        _updateControllers(newPost);
 
         return Expanded(
           child: SingleChildScrollView(
@@ -100,9 +103,9 @@ class _NewPostEditState extends State<NewPostEdit> {
               children: [
                 TextField(
                   onChanged: (value) {
-                    postValues[PostValue.body] = value;
-                    BlocProvider.of<CreateNewPostCubit>(context)
-                        .setValues(postValues);
+                    newPost.body = value;
+                    BlocProvider.of<EditNewPostCubit>(context)
+                        .setValues(newPost);
                   },
                   keyboardType: TextInputType.multiline,
                   maxLines: null,
@@ -134,11 +137,10 @@ class _NewPostEditState extends State<NewPostEdit> {
 
             return DropdownSearch<String>(
               onChanged: (value) {
-                postValues[PostValue.category] = value ?? '';
-                BlocProvider.of<CreateNewPostCubit>(context)
-                    .setValues(postValues);
+                newPost.category = value ?? '';
+                BlocProvider.of<EditNewPostCubit>(context).setValues(newPost);
               },
-              selectedItem: postValues[PostValue.category],
+              selectedItem: newPost.category,
               items: options,
               dropdownDecoratorProps: const DropDownDecoratorProps(
                 dropdownSearchDecoration: InputDecoration(
@@ -155,8 +157,8 @@ class _NewPostEditState extends State<NewPostEdit> {
 
   Widget _titleTextField() => TextField(
         onChanged: (value) {
-          postValues[PostValue.title] = value;
-          BlocProvider.of<CreateNewPostCubit>(context).setValues(postValues);
+          newPost.title = value;
+          BlocProvider.of<EditNewPostCubit>(context).setValues(newPost);
         },
         controller: _titleController,
         toolbarOptions:
@@ -168,8 +170,8 @@ class _NewPostEditState extends State<NewPostEdit> {
 
   Widget _abstractTextField() => TextField(
         onChanged: (value) {
-          postValues[PostValue.abstractText] = value;
-          BlocProvider.of<CreateNewPostCubit>(context).setValues(postValues);
+          newPost.postAbstract = value;
+          BlocProvider.of<EditNewPostCubit>(context).setValues(newPost);
         },
         controller: _abstractController,
         keyboardType: TextInputType.multiline,
@@ -189,10 +191,10 @@ class _NewPostEditState extends State<NewPostEdit> {
     super.dispose();
   }
 
-  void _updateControllers(Map<PostValue, String> postValues) {
-    final currentTitle = postValues[PostValue.title] ?? '';
-    final currentAbstract = postValues[PostValue.abstractText] ?? '';
-    final currentBody = postValues[PostValue.body] ?? '';
+  void _updateControllers(NewPost current) {
+    final currentTitle = current.title ?? '';
+    final currentAbstract = current.postAbstract ?? '';
+    final currentBody = current.body ?? '';
 
     _titleController.value = TextEditingValue(
       text: currentTitle,

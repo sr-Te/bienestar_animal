@@ -1,6 +1,6 @@
-import 'package:bienestar_animal/features/new_post/cubit/create_new_post_cubit.dart';
-import 'package:bienestar_animal/features/new_post/new_post_edit.dart';
-import 'package:bienestar_animal/features/new_post/new_post_preview.dart';
+import 'edit_new_post_cubit/edit_new_post_cubit.dart';
+import 'new_post_edit.dart';
+import 'new_post_preview.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -14,7 +14,7 @@ class NewPostPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => CreateNewPostCubit(),
+      create: (context) => EditNewPostCubit(),
       child: DefaultTabController(
         initialIndex: 0,
         length: 2,
@@ -26,8 +26,12 @@ class NewPostPage extends StatelessWidget {
             actions: [
               IconButton(
                 onPressed: () {},
-                icon: const Icon(Icons.question_mark_outlined),
-              )
+                icon: const Icon(Icons.question_mark),
+              ),
+              IconButton(
+                onPressed: () => _createPost(context),
+                icon: const Icon(Icons.done),
+              ),
             ],
           ),
           body: _tabBarView(),
@@ -45,4 +49,6 @@ class NewPostPage extends StatelessWidget {
         physics: NeverScrollableScrollPhysics(),
         children: [NewPostEdit(), NewPostPreview()],
       );
+
+  void _createPost(BuildContext context) {}
 }

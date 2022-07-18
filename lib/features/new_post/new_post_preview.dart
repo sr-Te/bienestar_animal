@@ -1,22 +1,23 @@
-import 'package:bienestar_animal/features/new_post/cubit/create_new_post_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
+
+import 'edit_new_post_cubit/edit_new_post_cubit.dart';
 
 class NewPostPreview extends StatelessWidget {
   const NewPostPreview({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<CreateNewPostCubit, CreateNewPostState>(
+    return BlocBuilder<EditNewPostCubit, EditNewPostState>(
       builder: (context, state) {
         return ListView(
           children: [
             const SizedBox(height: 20),
-            _title(state.postValues[PostValue.title] ?? ''),
+            _title(state.newPost.title ?? ''),
             const SizedBox(height: 20),
-            _abstractText(state.postValues[PostValue.abstractText] ?? ''),
-            _body(state.postValues[PostValue.body] ?? ''),
+            _abstractText(state.newPost.postAbstract ?? ''),
+            _body(state.newPost.body ?? ''),
           ],
         );
       },

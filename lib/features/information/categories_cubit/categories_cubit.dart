@@ -1,9 +1,9 @@
-import 'package:bienestar_animal/core/errors/failure.dart';
-import 'package:bienestar_animal/data/repositories/category_repository.dart';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 
+import '../../../core/errors/failure.dart';
 import '../../../data/models/category.dart';
+import '../../../data/repositories/category_repository.dart';
 
 part 'categories_state.dart';
 

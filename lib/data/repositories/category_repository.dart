@@ -9,10 +9,7 @@ class CategoryRepository {
   final http.Client client;
   final NetworkInfo networkInfo;
 
-  CategoryRepository({
-    required this.client,
-    required this.networkInfo,
-  });
+  CategoryRepository({required this.client, required this.networkInfo});
 
   List<Category> categories = [];
 

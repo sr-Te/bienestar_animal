@@ -1,7 +1,10 @@
+import 'package:auto_route/auto_route.dart';
+import 'package:bienestar_animal/features/information/post_list_page.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../core/routes/router.gr.dart';
 import '../../data/models/category.dart';
 import '../../widgets/failure_view.dart';
 import '../../widgets/loading_view.dart';
@@ -43,7 +46,7 @@ class InfoPage extends StatelessWidget {
         itemCount: categories.length,
         itemBuilder: (context, i) {
           return InkWell(
-            onTap: _goToCategory(context, categories[i]),
+            onTap: () => _goToCategory(context, categories[i]),
             child: Card(
               child: Stack(
                 children: [
@@ -59,7 +62,9 @@ class InfoPage extends StatelessWidget {
     );
   }
 
-  _goToCategory(BuildContext context, Category category) {}
+  _goToCategory(BuildContext context, Category category) {
+    AutoRouter.of(context).push(PostListRoute(category: category));
+  }
 
   _categoryImage(Category category) => Center(
         child: CachedNetworkImage(
