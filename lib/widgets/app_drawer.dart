@@ -1,3 +1,5 @@
+// ignore_for_file: constant_identifier_names
+
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 

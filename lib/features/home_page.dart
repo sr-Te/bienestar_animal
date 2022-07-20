@@ -1,8 +1,8 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../core/routes/router.gr.dart';
 import '../widgets/app_drawer.dart';
-import 'information/categories_cubit/categories_cubit.dart';
 import 'information/info_page.dart';
 import 'map/map_page.dart';
 
@@ -37,6 +37,13 @@ class _InitialPageState extends State<HomePage> {
       drawer: const AppDrawer(),
       body: _widgetOptions.elementAt(_selectedIndex),
       bottomNavigationBar: _bottomNavigationBar(),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      floatingActionButton: FloatingActionButton(
+        onPressed: () => AutoRouter.of(context).push(const NewAlertRoute()),
+        elevation: 2.0,
+        backgroundColor: Colors.purple,
+        child: const Icon(Icons.warning),
+      ),
     );
   }
 
@@ -46,20 +53,29 @@ class _InitialPageState extends State<HomePage> {
   ];
 
   Widget _bottomNavigationBar() {
-    return BottomNavigationBar(
-      items: const <BottomNavigationBarItem>[
-        BottomNavigationBarItem(
-          icon: Icon(Icons.article_outlined),
-          label: 'Info',
-        ),
-        BottomNavigationBarItem(
-          icon: Icon(Icons.map),
-          label: 'Map',
-        ),
-      ],
-      currentIndex: _selectedIndex,
-      selectedItemColor: Colors.amber[800],
-      onTap: _onItemTapped,
+    return BottomAppBar(
+      clipBehavior: Clip.antiAlias,
+      notchMargin: 5,
+      shape: const CircularNotchedRectangle(),
+      child: Wrap(
+        children: [
+          BottomNavigationBar(
+            onTap: _onItemTapped,
+            currentIndex: _selectedIndex,
+            selectedItemColor: Colors.purple,
+            items: const <BottomNavigationBarItem>[
+              BottomNavigationBarItem(
+                icon: Icon(Icons.article_outlined),
+                label: 'Info',
+              ),
+              BottomNavigationBarItem(
+                icon: Icon(Icons.map),
+                label: 'Map',
+              ),
+            ],
+          ),
+        ],
+      ),
     );
   }
 

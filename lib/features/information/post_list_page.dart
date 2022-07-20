@@ -39,6 +39,23 @@ class PostListPage extends StatelessWidget {
 
   Widget _postList(List<Post> posts) => ListView.builder(
         itemCount: posts.length,
-        itemBuilder: (context, i) => Card(child: Text(posts[i].title)),
+        itemBuilder: (context, i) => Card(
+          child: Container(
+            padding: const EdgeInsets.all(10),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  posts[i].title,
+                  style: const TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                Text(posts[i].postAbstract),
+              ],
+            ),
+          ),
+        ),
       );
 }

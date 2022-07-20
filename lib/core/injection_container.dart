@@ -1,3 +1,4 @@
+import 'package:bienestar_animal/features/new_post/create_new_postcubit/create_new_post_cubit.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get_it/get_it.dart';
 import 'package:http/http.dart' as http;
@@ -22,6 +23,7 @@ Future<void> init() async {
 
   // Posts
   sl.registerFactory(() => PostsCubit(postRepository: sl()));
+  sl.registerFactory(() => CreateNewPostCubit(postRepository: sl()));
   sl.registerLazySingleton<PostRepository>(
       () => PostRepository(client: sl(), networkInfo: sl()));
 
